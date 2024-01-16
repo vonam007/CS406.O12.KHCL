@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #5F8670;
+}
+
+.logo {
+    margin-top: 200px;
+    width: 100%;
+    height: min(100px, 15vw);
+    background-color: #FF9800;
+}
+
+.logo img {
+    margin-left: min(200px,10vw);
+    max-width: min(530px, 70vw);
+    transform: translate(0%, -20%);
+}
+
+.description {
+    font-family: 'Bebas Neue', sans-serif;
+    margin-top: min(120px, 10vw);
+    margin-left: min(200px, 10vw);
+    color: #FFF;
+}
+.description svg{
+    max-width: min(590px, 80vw);
+}
+
+.button {
+    margin-top: min(100px, 10vw);
+    width: 100%;
+    height: min(100px, 15vw);
+    background-color: #FF9800;
+    align-items: center;
+    justify-content: flex-start;
+    display: flex;
+
+}
+
+.button button {
+    width: min(333px, 52vw);
+    aspect-ratio: 333/114;
+    margin-left: min(200px, 10vw);
+    background-color: #820300;
+    border: none;
+    border-radius: min(25px, 4vw);
+    color: #FFF;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: min(72px, 12vw);
+    font-weight: 300;
+    text-transform: uppercase;
+    cursor: pointer;
+    letter-spacing: 8px;
+}
+.button button:hover {
+    background-color: #b60300;
+    color: #fff;
+    transition: 0.5s;
+}

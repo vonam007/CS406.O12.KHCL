@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeakLens</title>
+    <link rel="stylesheet" href="css/camera.css">
+</head>
+
+<body>
+    <audio id="audio" controls></audio>
+    <div class="header">
+        <img src="src/logo.svg" alt="SpeakLens">
+    </div>
+    <div class="main">
+        <div class="camera" id="cameraContainer">
+            <video id="cameraFeed" autoplay playsinline></video>
+            <canvas id="capturedCanvas" style="display: none;" ></canvas>
+
+            <img src="src/close-round-line-icon.svg" alt="" id="close">
+            
+        </div>
+        <div class="btn-contain">
+            <button class="btn" id="btn-a">Capture</button>
+            <button class="btn" id="btn-b">Talk</button>
+        </div>
+    </div>
+
+
+    <script>
+        const logo = document.querySelector('.header img');
+        logo.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    </script>
+    <script src="js/camera.js"></script>
+</body>
+
+</html>
