@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cameraFeed.srcObject.getVideoTracks().forEach(track => track.stop());
 
         talkButton.addEventListener('click', () => {
-            const BASE = "http://127.0.0.1:5000"; // Replace with your Flask API URL
+            const BASE = "https://smooth-rabbits-play.loca.lt"; // Replace with your Flask API URL
 
             const apiUrl = BASE + "/api/process"; // Replace with your Flask API endpoint
 
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         closeButton.click();
                         audio.pause();
                         audio.currentTime = 0;
-                    },3000);
+                    }, 3000);
                 })
                 .catch(error => console.error('Error:', error));
         }
@@ -60,45 +60,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// Check if the browser supports getUserMedia
-if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia({ video: true })
-        .then((stream) => {
-            // Assign the stream to the video element
-            cameraFeed.srcObject = stream;
-        })
-        .catch((error) => {
-            console.error('Error accessing camera:', error);
-        });
-} else {
-    console.error('getUserMedia is not supported in this browser');
-}
+    // Check if the browser supports getUserMedia
+    const switchCameraButton = document.getElementById('switchCamera');
 
-// Add event listener for the camera button
-const captureButton = document.getElementById('btn-a');
-const closeButton = document.getElementById('close');
-captureButton.addEventListener('click', () => {
-    captureAndDisplay();
-    cameraFeed.style.display = 'none';
-    closeButton.style.display = 'block';
+    let currentCamera = 'user'; // 'user' for front camera, 'environment' for back camera
 
-});
-closeButton.addEventListener('click', () => {
-    cameraFeed.style.display = 'block';
-    closeButton.style.display = 'none';
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then((stream) => {
-                // Assign the stream to the video element
+    function startCamera() {
+        const constraints = { video: { facingMode: currentCamera } };
+
+        navigator.mediaDevices.getUserMedia(constraints)
+            .then(stream => {
                 cameraFeed.srcObject = stream;
             })
-            .catch((error) => {
+            .catch(error => {
                 console.error('Error accessing camera:', error);
             });
-    } else {
-        console.error('getUserMedia is not supported in this browser');
     }
-});
+
+    // Initialize camera when the page loads
+    startCamera();
+
+    // Add event listener for the Switch Camera button
+    switchCameraButton.addEventListener('click', () => {
+        // Toggle between 'user' and 'environment' facing modes
+        currentCamera = (currentCamera === 'user') ? 'environment' : 'user';
+        startCamera();
+    });
+
+    // Add event listener for the camera button
+    const captureButton = document.getElementById('btn-a');
+    const closeButton = document.getElementById('close');
+    captureButton.addEventListener('click', () => {
+        captureAndDisplay();
+        cameraFeed.style.display = 'none';
+        switchCameraButton.style.display = 'none';
+        closeButton.style.display = 'block';
+
+    });
+    closeButton.addEventListener('click', () => {
+        cameraFeed.style.display = 'block';
+        closeButton.style.display = 'none';
+        switchCameraButton.style.display = 'block';
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then((stream) => {
+                    // Assign the stream to the video element
+                    cameraFeed.srcObject = stream;
+                })
+                .catch((error) => {
+                    console.error('Error accessing camera:', error);
+                });
+        } else {
+            console.error('getUserMedia is not supported in this browser');
+        }
+    });
 
 
 
@@ -140,7 +155,7 @@ closeButton.addEventListener('click', () => {
     //     const jsonData = JSON.stringify(data);
     //     xhr.send(jsonData);
     //   }
-      
+
 
 
 });

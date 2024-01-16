@@ -70,6 +70,14 @@ body {
     aspect-ratio: 1/1;
     cursor: pointer;
 }
+#switchCamera {
+    position: fixed;
+    max-width: min(100px , 12vw);
+    top: 4%;
+    left: 5%;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
 
 .btn-contain {
     width: 100%;
