@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <audio id="audio" controls></audio>
                     `
                     audioContain.innerHTML = contentTemp;
-                    
+
                     let audio =  document.getElementById('audio');
                     audio.src = URL.createObjectURL(blob);
                     audio.play();
@@ -81,6 +81,14 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => {
                 console.error('Error accessing camera:', error);
             });
+        if (currentCamera === 'environment') {
+            cameraContainer.style.transform = 'none';
+            cameraFeed.style.transform = 'scaleX(-1)';
+        }
+        else if (currentCamera === 'user'){
+            cameraContainer.style.transform = 'scaleX(-1)';
+            cameraFeed.style.transform = 'none';
+        }
     }
 
     // Initialize camera when the page loads
@@ -91,10 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Toggle between 'user' and 'environment' facing modes
         currentCamera = (currentCamera === 'user') ? 'environment' : 'user';
         startCamera();
-        if (currentCamera === 'environment') {
-            cameraFeed.style.transform = 'scaleX(-1)';
-        }
-
     });
 
     // Add event listener for the camera button
@@ -105,10 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
         cameraFeed.style.display = 'none';
         switchCameraButton.style.display = 'none';
         closeButton.style.display = 'block';
-        if (currentCamera === 'environment') {
-            cameraContainer.style.transform = 'scaleX(1)';
-            
-        }
     });
     closeButton.addEventListener('click', () => {
         cameraFeed.style.display = 'block';
