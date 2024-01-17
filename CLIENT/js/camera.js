@@ -91,9 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Toggle between 'user' and 'environment' facing modes
         currentCamera = (currentCamera === 'user') ? 'environment' : 'user';
         startCamera();
-        if (currentCamera === 'environment') {
-            cameraFeed.style.transform = 'scaleX(-1)';
-        }
 
     });
 
@@ -106,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         switchCameraButton.style.display = 'none';
         closeButton.style.display = 'block';
         if (currentCamera === 'environment') {
-            cameraContainer.style.transform = 'scaleX(1)';
+            cameraContainer.removeAttribute('transform');
         }
     });
     closeButton.addEventListener('click', () => {
