@@ -44,21 +44,26 @@ document.addEventListener('DOMContentLoaded', () => {
             })
                 .then(response => response.blob())
                 .then(blob => {
-                    let audioContain = document.getElementById('audio-container');
+                    
+                    const audioContain = document.getElementById('audio-container');
                     let contentTemp = `
-                    <audio id="audio" controls></audio>
+                    <audio id="audio" controls preload="none"></audio>
                     `
                     audioContain.innerHTML = contentTemp;
 
                     let audio =  document.getElementById('audio');
+                    audio.currentTime = 0;
                     audio.src = URL.createObjectURL(blob);
                     audio.play();
                     audio.addEventListener('ended', () => {
                         closeButton.click();  // Đóng cửa sổ hoặc thực hiện các hành động bạn muốn ở đây
                         audio.pause();
                         audio.currentTime = 0;
+                        audioContain.removeChild(audio);
                     });
+                    
                 })
+
                 .catch(error => console.error('Error:', error));
         }
         );
@@ -102,9 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
         cameraFeed.style.display = 'none';
         switchCameraButton.style.display = 'none';
         closeButton.style.display = 'block';
-        if (currentCamera === 'environment') {
-            cameraContainer.removeAttribute('transform');
-        }
     });
     closeButton.addEventListener('click', () => {
         cameraFeed.style.display = 'block';
