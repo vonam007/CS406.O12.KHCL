@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cameraFeed.srcObject.getVideoTracks().forEach(track => track.stop());
 
         talkButton.addEventListener('click', () => {
-            const BASE = "https://smooth-rabbits-play.loca.lt"; // Replace with your Flask API URL
+            const BASE = "https://major-islands-mate.loca.lt"; // Replace with your Flask API URL
 
             const apiUrl = BASE + "/api/process"; // Replace with your Flask API endpoint
 
