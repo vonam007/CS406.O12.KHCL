@@ -99,7 +99,10 @@ document.addEventListener('DOMContentLoaded', () => {
         cameraFeed.style.display = 'none';
         switchCameraButton.style.display = 'none';
         closeButton.style.display = 'block';
-
+        if (currentCamera === 'environment') {
+            cameraContainer.style.transform = 'scaleX(1)';
+            
+        }
     });
     closeButton.addEventListener('click', () => {
         cameraFeed.style.display = 'block';
