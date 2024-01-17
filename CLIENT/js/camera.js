@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         closeButton.click();
                         audio.pause();
                         audio.currentTime = 0;
-                    }, 3000);
+                    }, 5000);
                 })
                 .catch(error => console.error('Error:', error));
         }
@@ -85,6 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Toggle between 'user' and 'environment' facing modes
         currentCamera = (currentCamera === 'user') ? 'environment' : 'user';
         startCamera();
+        if (currentCamera === 'environment') {
+            cameraContainer.removeAttribute('transform');
+        }
+
     });
 
     // Add event listener for the camera button
