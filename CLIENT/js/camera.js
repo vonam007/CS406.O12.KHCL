@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         closeButton.style.display = 'block';
         if (currentCamera === 'environment') {
             cameraContainer.removeAttribute('transform');
+            cameraFeed.style.transform = 'scaleX(-1)';
         }
     });
     closeButton.addEventListener('click', () => {
