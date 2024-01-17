@@ -83,11 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         if (currentCamera === 'environment') {
             cameraContainer.style.transform = 'none';
-            cameraFeed.style.transform = 'scaleX(-1)';
-        }
-        else if (currentCamera === 'user'){
-            cameraContainer.style.transform = 'scaleX(-1)';
-            cameraFeed.style.transform = 'none';
         }
     }
 
