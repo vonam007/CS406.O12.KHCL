@@ -47,11 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     let audio = document.getElementById('audio');
                     audio.src = URL.createObjectURL(blob);
                     audio.play();
-                    setTimeout(() => {
-                        closeButton.click();
+                    audio.addEventListener('ended', () => {
+                        closeButton.click();  // Đóng cửa sổ hoặc thực hiện các hành động bạn muốn ở đây
                         audio.pause();
                         audio.currentTime = 0;
-                    }, 5000);
+                    });
                 })
                 .catch(error => console.error('Error:', error));
         }
