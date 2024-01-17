@@ -44,7 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
             })
                 .then(response => response.blob())
                 .then(blob => {
-                    let audio = document.getElementById('audio');
+                    let audioContain = document.getElementById('audio-container');
+                    let contentTemp = `
+                    <audio id="audio" controls></audio>
+                    `
+                    audioContain.innerHTML = contentTemp;
+                    
+                    let audio =  document.getElementById('audio');
                     audio.src = URL.createObjectURL(blob);
                     audio.play();
                     audio.addEventListener('ended', () => {
