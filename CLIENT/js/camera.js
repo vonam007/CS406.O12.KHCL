@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentCamera = (currentCamera === 'user') ? 'environment' : 'user';
         startCamera();
         if (currentCamera === 'environment') {
-            cameraContainer.style.transform = 'scaleX(-1)';
+            cameraFeed.style.transform = 'scaleX(-1)';
         }
 
     });
